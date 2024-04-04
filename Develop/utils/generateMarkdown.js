@@ -4,7 +4,7 @@ const badge = renderLicenseBadge(answers.license)
 
 const generateREADME = (`
 
-#${answers.title} ![License](${badge}) \n
+# < ${answers.title} > ![License](${badge}) \n
 
 ## Description
 ${answers.description}
