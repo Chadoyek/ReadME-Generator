@@ -1,8 +1,10 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-// TODO: Create an array of questions for user 
-inquirer.prompt([
+
+const generateMarkdown = require('./utils/generateMarkdown');
+
+const questions = [
     {
         type:"input",
         message:"Enter your README title: ",
@@ -25,23 +27,23 @@ inquirer.prompt([
         },
         {
         type:"input",
-        message:"Enter the contribution guidelines",
-        name: "contributing",
+        message:"Enter your collaborators",
+        name: "credits",
         },
         {
         type:"input",
-        message:"Enter the test instructions",
+        message:"How would you test this application?",
         name: "tests",
         },
         {
         type:"list",
-        choices: ["MIT", "GPL", "MPL"],
+        choices: ['(N/A)', 'Apache License 2.0', 'GNU General Public License v3.0', 'MIT License', 'BSD 2-Clause Simplified License', 'BSD 3-Clause New or Revised License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'GNU Affero General Public License v3.0', 'GNU General Public License v2.0', 'GNU Lesser General Public License v2.1', 'Mozilla Public License 2.0', 'The Unlicense'],
         message:"Which license does your project use?",
         name:"license"
         },
         {
         type:"input",
-        message:"What is your github username?",
+        message:"What is your Github username?",
         name: "github",
         },
         {
@@ -49,55 +51,23 @@ inquirer.prompt([
         message:"What is your email address?",
         name: "email",
         },
-])
-.then((data) => {
-console.log(data);
+];
 
-const readMe = `
-    
-# ${data.title}
-
-
-
-## Description
-${data.description}
-## Installation
-${data.installation}
-## Usage
- ${data.usage}
-## Contributing 
-${data.contributing}
- ## Tests 
-${data.tests}
-## License
-${data.license} 
-    
-## Questions
-    
-For questions contact me at : ${data.github} or ${data.email} 
-    
-    `
-    console.log(readMe);
-
-    fs.writeFile('generated_README.md', readMe,  function(err) {
-        if (err) {
-          console.error('Error generating file:', err);
-        } else {
-          console.log('File generated successfully!');
-        }
-      });
-});
-
-
-
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    
-}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer.prompt(questions)
+    .then((answers) => {
+    
+        fs.writeFile('README.md', generateMarkdown(answers), (err) =>
+            err ? console.log(err) : console.log('Successfully generated README.md')
+        );
+
+
+    
+    
+    })
+}
 
 // Function call to initialize app
 init();
