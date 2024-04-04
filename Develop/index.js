@@ -1,5 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
+const fs = require("fs");
 // TODO: Create an array of questions for user 
 inquirer.prompt([
     {
@@ -50,33 +51,41 @@ inquirer.prompt([
         },
 ])
 .then((data) => {
-    console.log(data);
+console.log(data);
 
-    const readMe = `
+const readMe = `
     
-    # ${title}
+# ${data.title}
 
 
 
-    ## description
-    ${description}
-    ## installation
-    ${installation}
-    ## usage
-    ${usage}
-    ## contributing 
-    ${contributing}
-    ## tests 
-    ${tests}
-    ## license
-    ${license} 
+## Description
+${data.description}
+## Installation
+${data.installation}
+## Usage
+ ${data.usage}
+## Contributing 
+${data.contributing}
+ ## Tests 
+${data.tests}
+## License
+${data.license} 
     
-    ## questions
+## Questions
     
-    for questions contact me at : ${github} or ${email} 
+For questions contact me at : ${data.github} or ${data.email} 
     
     `
-console.log(readMe);
+    console.log(readMe);
+
+    fs.writeFile('generated_README.md', readMe,  function(err) {
+        if (err) {
+          console.error('Error generating file:', err);
+        } else {
+          console.log('File generated successfully!');
+        }
+      });
 });
 
 
