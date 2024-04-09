@@ -5,12 +5,18 @@
 This command-line application allows users to quickly generate a high-quality README file for their projects. By simply answering a series of prompts, users can provide information about their project repository, including the project title, description, installation instructions, usage information, contribution guidelines, test instructions, chosen license, GitHub username, and email address. The application then generates a professional README.md file with structured sections tailored to the provided information.
 
 ## Table of Contents
+- [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
+
+
+## Demo
+
+You can view a demo walkthrough of the application by clicking the link below https://drive.google.com/file/d/1IuMPxQCuiFDyNShb_9Px_43ui6QghJYM/view
 
 ## Installation
 
